@@ -60,5 +60,13 @@ kubectl label namespace default istio-injection=enabled istio.io/rev=$REVISION -
 # should have either istio-injection or istio.io/rev=asm-1118-1 but not both labels
 kubectl label namespace default istio-injection- istio.io/rev=$REVISION --overwrite
 
+---
+
+Run this command from a pod inside the GKE cluster
+If you get 502s, its an Istio's issue
+If you don't, then its GCLB fault
+
+loop this command to generate traffic
+ watch -n 10 curl istio-ingressgateway.istio-system/ping
 
 </pre>
