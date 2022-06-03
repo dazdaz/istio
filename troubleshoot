@@ -1,0 +1,64 @@
+<pre>
+$ ./istioctl analyze -A
+
+Info [IST0102] (Namespace istio-system) The namespace is not enabled for Istio injection. Run 'kubectl label namespace istio-system
+istio-injection=enabled' to enable it, or 'kubectl label namespace istio-system istio-injection=disabled' to explicitly mark it as not needing injection.
+Two of those issues can be safely ignored. istio-system and asm-system don't need injection
+
+---
+
+kubectl logs contacts-ddb5bc6f4-9kpkl -c istio-proxy
+
+# delete from overlay map file twice to remove all config on the cluster
+kubectl delete -f asm-1112-17-manifest-expanded.yaml
+kubectl delete -f asm-1112-17-manifest-expanded.yaml
+kubectl delete ns istio-system --force
+
+---
+
+# 
+kubectl get ns --show-labels
+istio-injection=enabled,istio.io/rev=asm-1112-17,kubernetes.io/metadata.name=default
+
+kubectl label namespace default istio-injection-
+
+istio.io/rev=asm-1112-17,kubernetes.io/metadata.name=default
+
+---
+
+kubectl logs contacts-ddb5bc6f4-9kpkl -c istio-proxy
+
+---
+
+$ kubectl get mutatingwebhookconfigurations
+istio-sidecar-injector-asm-1112-17
+neg-annotation.config.common-webhooks.networking.gke.io
+pod-ready.config.common-webhooks.networking.gke.io
+
+---
+
+kubectl -n istio-system logs istiod-asm-1112-17-564bf8fcfd-ddrd
+
+---
+
+to check sidecar injection, do this 
+$ kubectl -n gateway-namespace get po istio-ingressgateway-6495dd5f7c-7cb8b -oyaml
+
+---
+
+# Canary release approach to hardcode the version number
+REVISION=asm-1118-1
+kubectl create ns gateway-namespace
+kubectl label namespace gateway-namespace istio-injection=enabled istio.io/rev=$REVISION --overwrite
+
+---
+
+REVISION=asm-1118-1
+kubectl label namespace default istio-injection=enabled istio.io/rev=$REVISION --overwrite
+
+# removes the istio-injection variable
+# should have either istio-injection or istio.io/rev=asm-1118-1 but not both labels
+kubectl label namespace default istio-injection- istio.io/rev=$REVISION --overwrite
+
+
+</pre>
