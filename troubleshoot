@@ -1,4 +1,4 @@
-<pre>
+```
 $ ./istioctl analyze -A
 
 Info [IST0102] (Namespace istio-system) The namespace is not enabled for Istio injection. Run 'kubectl label namespace istio-system
@@ -68,7 +68,22 @@ If you don't, then its GCLB fault
 
 loop this command to generate traffic
  watch -n 10 curl istio-ingressgateway.istio-system/ping
+ 
+# 
+kubectl get istio-io -A -oyaml
+kubectl get cm -n istio-system -oyaml
 
-</pre>
+# 
+istioctl pc l: l for listener.
+istioctl pc ep: ep for endpoint.
+istioctl pc c: c for cluster.
 
-* https://github.com/istio/istio/wiki/Troubleshooting-Istio
+```
+
+
+---
+
+
+https://cloud.google.com/service-mesh/docs/troubleshooting/troubleshoot-collect-logs
+https://innablr.com.au/blog/how-to-debug-failures-in-istio-service-mesh/
+https://github.com/istio/istio/wiki/Troubleshooting-Istio
