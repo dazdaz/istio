@@ -80,6 +80,8 @@ istioctl pc c: c for cluster.
 
 ```
 
+Access the Istio Debug Console
+When you add the URI stem `/debug` to the URL, you gain access to the Istio Pilot Debug Console 
 
 ---
 
