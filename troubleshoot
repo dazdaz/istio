@@ -78,6 +78,18 @@ istioctl pc l: l for listener.
 istioctl pc ep: ep for endpoint.
 istioctl pc c: c for cluster.
 
+$ kubectl get --raw '/api/v1/namespaces/istio-system/pods/istiod-6c66b6c744-5hdvh:15014/proxy/debug' -v9
+
+$ istio-1.6.9/bin/istioctl ps
+NAME                                                   CDS        LDS        EDS        RDS        PILOT                       VERSION
+istio-ingressgateway-6f59657d45-sn4fc.istio-system     SYNCED     SYNCED     SYNCED     SYNCED     istiod-6c66b6c744-5hdvh     1.7.1
+prometheus-59bb87b99d-bs25x.istio-system               SYNCED     SYNCED     SYNCED     SYNCED     istiod-6c66b6c744-5hdvh     1.6.9
+
+$ istio-1.6.9/bin/istioctl version
+client version: 1.6.9
+control plane version: 1.7.1
+data plane version: 1.7.1 (9 proxies), 1.6.9 (1 proxies)
+
 ```
 
 Access the Istio Debug Console
