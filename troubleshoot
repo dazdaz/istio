@@ -95,6 +95,9 @@ data plane version: 1.7.1 (9 proxies), 1.6.9 (1 proxies)
 Access the Istio Debug Console
 When you add the URI stem `/debug` to the URL, you gain access to the Istio Pilot Debug Console 
 
+Analyzing Istio Performance with pprof
+https://github.com/istio/istio/wiki/Analyzing-Istio-Performance
+
 ---
 
 
