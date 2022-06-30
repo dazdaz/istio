@@ -90,6 +90,9 @@ client version: 1.6.9
 control plane version: 1.7.1
 data plane version: 1.7.1 (9 proxies), 1.6.9 (1 proxies)
 
+curl istio-ingressgateway:80//ready
+
+
 ```
 
 Access the Istio Debug Console
