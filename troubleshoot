@@ -1,4 +1,10 @@
 ```
+# Version of Istio - should show the revision which is the version
+kubectl -n istio-system get pods -l app=istiod --show-labels
+
+# Google Managed Control PLane
+kubectl -n istio-system get controlplanerevision
+
 $ ./istioctl analyze -A
 
 Info [IST0102] (Namespace istio-system) The namespace is not enabled for Istio injection. Run 'kubectl label namespace istio-system
